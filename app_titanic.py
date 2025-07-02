@@ -26,7 +26,7 @@ Este app prevê a **probabilidade de sobrevivência** de um passageiro no Titani
 Quer saber suas chances de sobrevivência? Preencha seus dados abaixo.
 """)
 
-# Carregar os dados
+# Carregando os dados
 @st.cache_data # Guarda em cache o resultado da função
 def load_data():
     data = pd.read_csv('titanic.csv')
@@ -34,18 +34,18 @@ def load_data():
 
 df = load_data() #Define uma função, ou melhor, um bloco de código que pode ser reutilizado quando precisar carregar dados
 
-# Selecionar variáveis relevantes, removendo as linhas que contêm valores ausentes
+# Selecionando variáveis relevantes, removendo as linhas que contêm valores ausentes
 df = df[['survived', 'pclass', 'sex', 'age']].dropna()
 
-# Codificar variável categórica
+# Codificando variável categórica
 le = LabelEncoder() #criando um codificador de rótulos convertendo categorias de texto em números inteiros
 df['sex'] = le.fit_transform(df['sex']) # para "0" e "1"
 
-# Definir X e y
+# Definindo X e y
 X = df[['pclass', 'sex', 'age']] # variáveis preditoras
 y = df['survived'] # variável alvo definida como categórica
 
-# Treinar o modelo
+# Treinando o modelo
 model = LogisticRegression()
 model.fit(X, y)
 
@@ -56,14 +56,14 @@ pclass = st.sidebar.selectbox('Classe do Bilhete', (1, 2, 3)) # criando uma caix
 sex = st.sidebar.selectbox('Sexo', ('Masculino', 'Feminino')) # Outra caixa para informação do sexo
 age = st.sidebar.slider('Idade', 0, 100, 25) # Criando um controle deslizante (slider) para o usuário indicar a idade (min=0, max=100, cursor começa no 25) 
 
-# Codificar sexo
+# Codificando sexo
 sex_encoded = 1 if sex == 'male' else 0 #expressão condicional/tenária. Se for masc = 1, caso contrário será 0 (fem)
 
-# Fazer previsão
+# Fazendo previsão
 input_data = np.array([[pclass, sex_encoded, age]]) #criando uma matriz
 prob = model.predict_proba(input_data)[0][1] #retornando uma array com as probalidades de cada classe
 
-# Mostrar resultado
+# Mostrando resultado
 st.subheader('Resultado:')
 st.write(f'**Probabilidade de sobreviver:** {prob*100:.2f}%')
 
@@ -72,6 +72,6 @@ if prob >= 0.5: #verifica se a probabilidade é de 50%
 else:
     st.error('Baixa chance de sobreviver... 😢')  #função para mostrar a mensagem em verde
 
-# Mostrar dados
+# Mostrando dados
 with st.expander('🔍 Ver dados utilizados no treinamento'): #função para criar caixa que expande
     st.dataframe(df)
