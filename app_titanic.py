@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 🚢 Titanic - Probabilidade de Sobrevivência
+# # Titanic - Probabilidade de Sobrevivência
 # Este notebook cria um app interativo para prever a chance de sobrevivência de um passageiro do Titanic, utilizando o dataset do Kaggle.
 
 # In[1]:
