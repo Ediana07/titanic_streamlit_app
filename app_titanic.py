@@ -75,12 +75,3 @@ else:
 # Mostrar dados
 with st.expander('🔍 Ver dados utilizados no treinamento'): #função para criar caixa que expande
     st.dataframe(df)
-
-
-# ## 🚀 Como rodar localmente
-# 1. Salve este notebook e o arquivo `titanic.csv` na mesma pasta.
-# 2. Salve o código acima como `app.py`.
-# 3. No terminal, execute:
-# ```
-# streamlit run app.py
-# ```
