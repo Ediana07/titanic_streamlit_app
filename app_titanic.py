@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding: utf-8
 
 # # Titanic - Probabilidade de Sobrevivência
@@ -8,9 +7,6 @@
 
 
 #get_ipython().system('pip install pandas scikit-learn streamlit')
-
-
-# In[ ]:
 
 
 import streamlit as st
